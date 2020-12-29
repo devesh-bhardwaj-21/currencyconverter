@@ -45,6 +45,7 @@ var baseCurrency = baseCurrencyValueList.random()
 object CurrencyUtils {
     val currencyModelStorage = mutableListOf<CurrencyModel>()
     init {
+        currencyModelStorage.clear()
         currencyModelStorage.add(CurrencyModel(DateTime.now().toString(), Rates(), baseCurrency))
     }
 

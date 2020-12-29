@@ -15,22 +15,21 @@ fun Application.registerCurrencyRoutes() {
 }
 
 fun Route.currencyRouting() {
-    route("/currency") {
-        get("{base}") {
-            val base = call.parameters["base"] ?: return@get call.respondText(
-                "Missing or malformed input",
-                status = HttpStatusCode.BadRequest
-            )
-            val currency =
-                currencyModelStorage.find { it.base == base }.also { currencyModelStorage }.also { baseCurrency = base } ?: return@get call.respondText(
+    get("/currency/{base}") {
+        val base = call.parameters["base"] ?: return@get call.respondText(
+            "Missing or malformed input",
+            status = HttpStatusCode.BadRequest
+        )
+        val currency =
+            currencyModelStorage.find { it.base == base }.also { currencyModelStorage }.also { baseCurrency = base }
+                ?: return@get call.respondText(
                     "No currency with base $base",
                     status = HttpStatusCode.NotFound
                 )
-            if (currencyModelStorage.isNotEmpty()) {
-                call.respond(currency)
-            } else {
-                call.respondText("No customers found", status = HttpStatusCode.NotFound)
-            }
+        if (currencyModelStorage.isNotEmpty()) {
+            call.respond(currency)
+        } else {
+            call.respondText("No customers found", status = HttpStatusCode.NotFound)
         }
     }
 }
