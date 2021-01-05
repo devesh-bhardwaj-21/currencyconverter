@@ -40,13 +40,10 @@ val baseCurrencyValueList = arrayListOf(
     "INR"
 )
 
-var baseCurrency = baseCurrencyValueList.random()
-
 object CurrencyUtils {
-    val currencyModelStorage = mutableListOf<CurrencyModel>()
-    init {
-        currencyModelStorage.clear()
-        currencyModelStorage.add(CurrencyModel(DateTime.now().toString(), Rates(), baseCurrency))
+
+    fun getCurrencies(base: String) : CurrencyModel {
+        return CurrencyModel(DateTime.now().toString(), Rates(), base)
     }
 
 }
