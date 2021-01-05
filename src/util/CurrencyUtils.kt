@@ -2,9 +2,10 @@ package com.currencyconverter.util
 
 import com.currencyconverter.model.CurrencyModel
 import com.currencyconverter.model.Rates
+import com.currencyconverter.util.StorageUtils.getCurrencyList
 import org.joda.time.DateTime
 
-val baseCurrencyValueList = arrayListOf(
+val baseCurrencyValueList = listOf(
     "USD",
     "EUR",
     "CHF",
@@ -40,13 +41,10 @@ val baseCurrencyValueList = arrayListOf(
     "INR"
 )
 
-var baseCurrency = baseCurrencyValueList.random()
-
 object CurrencyUtils {
-    val currencyModelStorage = mutableListOf<CurrencyModel>()
-    init {
-        currencyModelStorage.clear()
-        currencyModelStorage.add(CurrencyModel(DateTime.now().toString(), Rates(), baseCurrency))
+
+    fun getCurrencies(base: String) : CurrencyModel {
+        return CurrencyModel(DateTime.now().toString(), getCurrencyList(), base)
     }
 
 }

@@ -9,7 +9,7 @@ data class CurrencyModel(
     @SerializedName("date")
     val date: String = "",
     @SerializedName("rates")
-    val rates: Rates,
+     val rates: List<CurrencyRates>,
     @SerializedName("base")
     val base: String = ""
 )
