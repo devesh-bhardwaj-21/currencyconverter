@@ -8,6 +8,8 @@ import java.math.BigDecimal
 
 @Serializable
 data class Rates(
+    @Contextual @SerializedName("INR")
+    val inr: BigDecimal = BigDecimal(Math.random()).times(BigDecimal(100)).setScale(2, BigDecimal.ROUND_HALF_EVEN),
     @Contextual @SerializedName("CHF")
     val chf: BigDecimal = BigDecimal(Math.random()).times(BigDecimal(100)).setScale(2, BigDecimal.ROUND_HALF_EVEN),
     @Contextual @SerializedName("HRK")
